@@ -36,4 +36,4 @@ app.use(controllers);
 let port = process.env.PORT;
 app.listen(port, () => console.log('Example app listening on port: ' + port));
 
-export {};
+export default app;

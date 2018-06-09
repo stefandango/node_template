@@ -2,3 +2,4 @@ dist/*.js
 build/*.js
 node_modules/
 /index.js
+typings/
