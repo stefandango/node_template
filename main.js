@@ -4,6 +4,7 @@ import exhbs from 'express-handlebars';
 import helmet from 'helmet';
 import compression from 'compression';
 import dotenv from 'dotenv';
+import morgan from 'morgan';
 import path from 'path';
 
 dotenv.config();
@@ -13,6 +14,9 @@ import controllers from './controllers';
 const app = express();
 
 // Middleware
+app.use(morgan('combined'));
+app.use(helmet());
+app.use(compression());
 
 // Set up view engine
 const hbs = exhbs.create({
@@ -25,12 +29,7 @@ app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 app.use(express.static(__dirname + '/build/'));
 
-// Set up Helmet
-app.use(helmet());
-
-// Compression
-app.use(compression());
-
+// Use controllers from controllers folder
 app.use(controllers);
 
 let port = process.env.PORT;

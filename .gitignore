@@ -6,3 +6,4 @@ npm-debug.log*
 .eslintcache
 typings/
 typings.json
+.DS_Store

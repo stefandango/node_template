@@ -8,14 +8,10 @@
 		"test": "mocha -r esm **/*.test.js",
 		"clean": "rimraf build",
 		"lint": "eslint **/*.js",
-		"build:dev":
-			"npm run lint && npm run clean && webpack --config webpack.dev.js",
-		"build:prod":
-			"npm run lint && npm run clean && webpack --config webpack.prod.js",
-		"watch:client":
-			" npm run clean && webpack --config webpack.dev.js --watch --progress",
-		"watch:server":
-			"nodemon --inspect-brk=0.0.0.0:9229 index.js --ignore 'build/' --exec 'npm test'",
+		"build:dev": "npm run lint && npm run clean && webpack --config webpack.dev.js",
+		"build:prod": "npm run lint && npm run clean && webpack --config webpack.prod.js",
+		"watch:client": " npm run clean && webpack --config webpack.dev.js --watch --progress",
+		"watch:server": "nodemon --inspect-brk=0.0.0.0:9229 index.js --ignore 'build/' --exec 'npm test'",
 		"start": "npm-run-all -p watch:client watch:server"
 	},
 	"keywords": [],
@@ -27,7 +23,8 @@
 		"esm": "^3.0.38",
 		"express": "^4.16.3",
 		"express-handlebars": "^3.0.0",
-		"helmet": "^3.12.1"
+		"helmet": "^3.12.1",
+		"morgan": "^1.9.0"
 	},
 	"devDependencies": {
 		"babel-core": "^6.26.3",
