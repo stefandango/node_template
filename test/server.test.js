@@ -5,18 +5,26 @@ before(done => {
 	// runs before all tests in this block
 	setTimeout(() => {
 		done();
-	}, 1000);
+	}, 1200);
 });
 
-it('responds to /', function testSlash(done) {
-	request(app)
-		.get('/')
-		.expect(200, done);
-});
-it('404 to random..', function testPath(done) {
-	request(app)
-		.get('/foo/barr')
-		.expect(404, done);
+describe('Server', () => {
+	describe('GET /', () => {
+		it('responds to /', done => {
+			request(app)
+				.get('/')
+				.expect(200)
+				.end(done);
+		});
+	});
+	describe('GET /foo/barr', () => {
+		it('404 to random..', done => {
+			request(app)
+				.get('/foo/barr')
+				.expect(404)
+				.end(done);
+		});
+	});
 });
 
 export {};

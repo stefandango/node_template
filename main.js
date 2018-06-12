@@ -14,7 +14,11 @@ import controllers from './controllers';
 const app = express();
 
 // Middleware
-app.use(morgan('combined'));
+if (app.get('env') === 'development') {
+	app.use(morgan('dev'));
+} else {
+	app.use(morgan('combined'));
+}
 app.use(helmet());
 app.use(compression());
 
