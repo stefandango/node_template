@@ -2,6 +2,7 @@ const merge = require('webpack-merge');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const common = require('./webpack.common');
+const autoprefixer = require('autoprefixer');
 
 module.exports = merge(common, {
 	mode: 'development',
@@ -12,7 +13,24 @@ module.exports = merge(common, {
 	module: {
 		rules: [
 			{
-				test: /\.less$/,
+				test: /\.css$/,
+				use: [
+					'style-loader',
+					'css-loader',
+					{
+						// Loader for webpack to process CSS with PostCSS
+						loader: 'postcss-loader',
+						options: {
+							options: {},
+							plugins: () => {
+								autoprefixer({ browsers: ['last 2 versions'] });
+							}
+						}
+					}
+				]
+			},
+			{
+				test: /\.scss$/,
 				use: [
 					{
 						loader: 'style-loader' // creates style nodes from JS strings
@@ -24,7 +42,7 @@ module.exports = merge(common, {
 						}
 					},
 					{
-						loader: 'less-loader', // compiles Less to CSS
+						loader: 'sass-loader', // compiles Less to CSS
 						options: {
 							sourceMap: true
 						}

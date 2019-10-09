@@ -1,6 +1,7 @@
 const merge = require('webpack-merge');
 const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const autoprefixer = require('autoprefixer');
 
 const common = require('./webpack.common');
 
@@ -9,7 +10,24 @@ module.exports = merge(common, {
 	module: {
 		rules: [
 			{
-				test: /\.less$/,
+				test: /\.css$/,
+				use: [
+					MiniCssExtractPlugin.loader,
+					'css-loader',
+					{
+						// Loader for webpack to process CSS with PostCSS
+						loader: 'postcss-loader',
+						options: {
+							options: {},
+							plugins: () => {
+								autoprefixer({ browsers: ['last 2 versions'] });
+							}
+						}
+					}
+				]
+			},
+			{
+				test: /\.scss$/,
 				use: [
 					MiniCssExtractPlugin.loader,
 					{
@@ -19,7 +37,7 @@ module.exports = merge(common, {
 						}
 					},
 					{
-						loader: 'less-loader', // compiles Less to CSS
+						loader: 'sass-loader', // compiles Less to CSS
 						options: {
 							sourceMap: true
 						}
