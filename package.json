@@ -8,9 +8,9 @@
     "test": "mocha -r esm **/*.test.js",
     "clean": "rimraf build",
     "lint": "eslint **/*.js",
-    "build:dev": "npm run lint && npm run clean && webpack --config webpack.dev.js",
-    "build:prod": "npm run lint && npm run clean && webpack --config webpack.prod.js",
-    "watch:client": " npm run clean && webpack --config webpack.dev.js --watch --progress",
+    "build:dev": "npm run lint && npm run clean && webpack --mode=development --config webpack.dev.js",
+    "build:prod": "npm run lint && npm run clean && webpack --mode=production --config webpack.prod.js",
+    "watch:client": " npm run clean && webpack --mode=development --config webpack.dev.js --watch --progress",
     "watch:server": "nodemon --inspect-brk=0.0.0.0:9229 index.js --ignore 'build/' --exec 'npm test'",
     "start": "npm-run-all -p watch:client watch:server"
   },
@@ -38,7 +38,7 @@
     "eslint-plugin-mocha": "^5.0.0",
     "exports-loader": "^0.7.0",
     "extract-loader": "^3.0.0",
-    "favicons-webpack-plugin": "0.0.9",
+    "favicons-webpack-plugin": "^1.0.0",
     "file-loader": "^1.1.11",
     "handlebars-loader": "^1.7.1",
     "html-loader": "^0.5.5",
@@ -59,6 +59,7 @@
     "url-loader": "^1.0.1",
     "webpack": "^4.9.1",
     "webpack-cli": "^2.1.4",
-    "webpack-merge": "^4.1.2"
+    "webpack-merge": "^4.1.2",
+    "webpack-mode": "^1.0.2"
   }
 }

@@ -1,5 +1,8 @@
 const path = require('path');
+//const isDevelopment = process.env.NODE_ENV != 'production';
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const webpackMode = require('webpack-mode');
+
 //const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const config = {
@@ -10,7 +13,9 @@ const config = {
 	},
 	output: {
 		path: path.resolve(__dirname, 'build'),
-		filename: '[name].[hash].bundle.js'
+		filename: webpackMode.isProduction
+			? '[name].[chunkhash].bundle.js'
+			: '[name].bundle.js'
 	},
 	module: {
 		rules: [
