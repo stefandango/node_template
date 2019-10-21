@@ -42,7 +42,7 @@ module.exports = merge(common, {
 						}
 					},
 					{
-						loader: 'sass-loader', // compiles Less to CSS
+						loader: 'sass-loader', // compiles SASS to CSS
 						options: {
 							sourceMap: true
 						}

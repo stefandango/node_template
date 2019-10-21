@@ -3,10 +3,14 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 //const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const config = {
-	entry: './src/index.js',
+	entry: {
+		app: './src/app.js',
+		index: './src/sections/index/index.js',
+		about: './src/sections/about/about.js'
+	},
 	output: {
 		path: path.resolve(__dirname, 'build'),
-		filename: 'bundle.js'
+		filename: '[name].[hash].bundle.js'
 	},
 	module: {
 		rules: [
@@ -18,7 +22,7 @@ const config = {
 				test: /\.handlebars$/,
 				use: [
 					{
-						loader: 'file-loader',
+						loader: 'handlebars-loader',
 						options: {
 							name: '[name].[ext]',
 							outputPath: 'views/'
@@ -27,7 +31,14 @@ const config = {
 					'extract-loader',
 					'html-loader'
 				],
-				exclude: path.resolve(__dirname, 'src/views/layouts/main.handlebars')
+				exclude: [
+					path.resolve(
+						__dirname,
+						'src/sections/shared/layouts/main.handlebars'
+					),
+					path.resolve(__dirname, 'src/sections/index/index.handlebars'),
+					path.resolve(__dirname, 'src/sections/about/about.handlebars')
+				]
 			},
 			{
 				test: /\.(jpe?g|png|gif|svg)$/,
@@ -57,17 +68,25 @@ const config = {
 		]
 	},
 	plugins: [
-		/* 		new CopyWebpackPlugin([
-			{
-				from: 'src/views',
-				to: 'views'
-			}
-		]), */
-
 		new HtmlWebpackPlugin({
-			template: 'src/views/layouts/main.handlebars',
-			filename: 'views/layouts/main.handlebars'
+			template: 'src/sections/shared/layouts/main.handlebars',
+			filename: 'views/layouts/main.handlebars',
+			inject: 'head', // Main should load before template (therefor include in head..)
+			chunks: ['app']
+		}),
+		new HtmlWebpackPlugin({
+			template: 'src/sections/index/index.handlebars',
+			filename: 'views/index.handlebars',
+			inject: true,
+			chunks: ['index']
+		}),
+		new HtmlWebpackPlugin({
+			template: 'src/sections/about/about.handlebars',
+			filename: 'views/about.handlebars',
+			inject: true,
+			chunks: ['about']
 		})
+
 		//new FaviconsWebpackPlugin('./src/assets/my-logo.png')
 	],
 	optimization: {
@@ -76,5 +95,4 @@ const config = {
 		}
 	}
 };
-
 module.exports = config;
