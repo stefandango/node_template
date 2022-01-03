@@ -1,21 +1,25 @@
 {
   "name": "node_template",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "",
   "main": "index.js",
   "module": "main.js",
   "scripts": {
     "test": "mocha -r esm **/*.test.js",
     "clean": "rimraf build",
-    "lint": "eslint '**/*.js'",
-    "build:dev": "npm run lint && npm run clean && webpack --mode=development --config webpack.dev.js",
-    "build:prod": "npm run lint && npm run clean && webpack --mode=production --config webpack.prod.js",
-    "watch:client": " npm run clean && webpack --mode=development --config webpack.dev.js --watch --progress",
+    "lint": "eslint '**/*.js' --ignore-pattern node_modules/",
+    "build:dev": "npm run lint && npm run clean && webpack --config webpack.dev.js",
+    "build:prod": "npm run lint && npm run clean && webpack --config webpack.prod.js",
+    "watch:client": " npm run clean && webpack --config webpack.dev.js --watch --progress",
     "watch:server": "nodemon --inspect-brk=0.0.0.0:9229 index.js --ignore 'build/' --exec 'npm test'",
     "start": "npm-run-all -p watch:client watch:server"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "Homepage",
+    "fun",
+    "playground"
+  ],
+  "author": "Stefan P",
   "license": "ISC",
   "dependencies": {
     "compression": "^1.7.4",
