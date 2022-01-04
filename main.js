@@ -1,6 +1,6 @@
 // ESM syntax is supported.
 import express from 'express';
-import exhbs from 'express-handlebars';
+import { create  } from 'express-handlebars';
 import helmet from 'helmet';
 import compression from 'compression';
 import dotenv from 'dotenv';
@@ -23,7 +23,7 @@ app.use(helmet());
 app.use(compression());
 
 // Set up view engine
-const hbs = exhbs.create({
+const hbs = create({
 	layoutsDir: path.join(__dirname, '/build/views/layouts'),
 	defaultLayout: 'main',
 	partialsDir: path.join(__dirname, '/build/views/partials')
