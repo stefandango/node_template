@@ -4,7 +4,8 @@ import { create  } from 'express-handlebars';
 import helmet from 'helmet';
 import compression from 'compression';
 import dotenv from 'dotenv';
-import morgan from 'morgan';
+//import morgan from 'morgan';
+const morgan = require('morgan');
 import path from 'path';
 
 dotenv.config();
@@ -21,7 +22,6 @@ if (app.get('env') === 'development') {
 }
 app.use(helmet());
 app.use(compression());
-
 // Set up view engine
 const hbs = create({
 	layoutsDir: path.join(__dirname, '/build/views/layouts'),

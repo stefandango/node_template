@@ -5,7 +5,7 @@ before(done => {
 	// runs before all tests in this block
 	setTimeout(() => {
 		done();
-	}, 1200);
+	}, 1500);
 });
 
 describe('Server', () => {

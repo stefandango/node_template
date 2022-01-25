@@ -11,7 +11,8 @@ router.get('/', function(req, res) {
 });
 
 router.get('*', function(req, res) {
-	res.send('404 - Page not found', 404); // TODO: Create pretty 404 page.
+	//	res.send('404 - Page not found', 404); // TODO: Create pretty 404 page.
+	res.status(404).send('404 - Page not found...');
 });
 
 // eslint-disable-next-line no-unused-vars
