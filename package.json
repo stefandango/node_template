@@ -7,7 +7,7 @@
   "scripts": {
     "test": "mocha -r esm **/*.test.js",
     "clean": "rimraf build",
-    "lint": "eslint '**/*.js' --ignore-pattern node_modules/",
+    "lint": "eslint '**/*.js'",
     "build:dev": "npm run lint && npm run clean && webpack --config webpack.dev.js",
     "build:prod": "npm run lint && npm run clean && webpack --config webpack.prod.js",
     "watch:client": " npm run clean && webpack --config webpack.dev.js --watch --progress",
@@ -43,6 +43,7 @@
     "eslint-plugin-mocha": "^10.0.3",
     "exports-loader": "^3.1.0",
     "extract-loader": "^5.1.0",
+    "favicons": "^6.2.2",
     "favicons-webpack-plugin": "^5.0.2",
     "file-loader": "^6.2.0",
     "handlebars-loader": "^1.7.1",
