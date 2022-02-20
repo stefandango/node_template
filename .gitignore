@@ -7,3 +7,4 @@ npm-debug.log*
 typings/
 typings.json
 .DS_Store
+.vscode/

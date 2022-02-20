@@ -1,11 +1,18 @@
-const { merge } = require('webpack-merge');
-const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const autoprefixer = require('autoprefixer');
+//const { merge } = require('webpack-merge');
+import {merge} from 'webpack-merge';
+//const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
+import FaviconsWebpackPlugin from 'favicons-webpack-plugin';
 
-const common = require('./webpack.common');
+//const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 
-module.exports = merge(common, {
+//const autoprefixer = require('autoprefixer');
+import autoprefixer from 'autoprefixer';
+
+//const common = require('./webpack.common.cjs');
+import common from './webpack.common.js';
+
+export default merge(common, {
 	mode: 'production',
 	module: {
 		rules: [

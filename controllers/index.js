@@ -1,6 +1,6 @@
 import express from 'express';
 
-import aboutController from './about';
+import aboutController from './about.js';
 
 let router = express.Router();
 

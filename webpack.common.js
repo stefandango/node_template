@@ -1,11 +1,22 @@
-const path = require('path');
+//const path = require('path');
+import path from 'path';
+import {dirname} from 'path';
+
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
 //const isDevelopment = process.env.NODE_ENV != 'production';
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const webpackMode = require('webpack-mode');
+//const HtmlWebpackPlugin = require('html-webpack-plugin');
+import HtmlWebpackPlugin from 'html-webpack-plugin';
+
+//const webpackMode = require('webpack-mode');
+import webpackMode from 'webpack-mode';
 
 //const CopyWebpackPlugin = require('copy-webpack-plugin');
 
-const config = {
+export default {
 	entry: {
 		app: './src/app.js',
 		index: './src/sections/index/index.js',
@@ -19,10 +30,6 @@ const config = {
 	},
 	module: {
 		rules: [
-			{
-				use: 'babel-loader',
-				test: /\.js$/
-			},
 			{
 				test: /\.handlebars$/,
 				use: [
@@ -100,4 +107,5 @@ const config = {
 		}
 	}
 };
-module.exports = config;
+//module.exports = config;
+//export const config;

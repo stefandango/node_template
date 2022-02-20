@@ -1,10 +1,15 @@
-const { merge } = require('webpack-merge');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+//const { merge } = require('webpack-merge');
+import {merge} from 'webpack-merge';
 
-const common = require('./webpack.common');
-const autoprefixer = require('autoprefixer');
+//const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 
-module.exports = merge(common, {
+//const common = require('./webpack.common.cjs');
+import common from './webpack.common.js';
+//const autoprefixer = require('autoprefixer');
+import autoprefixer from 'autoprefixer';
+
+export default merge(common, {
 	mode: 'development',
 	devtool: 'inline-source-map',
 	devServer: {

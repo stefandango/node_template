@@ -2,10 +2,11 @@
   "name": "node_template",
   "version": "1.1.0",
   "description": "",
+  "type": "module",
   "main": "index.js",
-  "module": "main.js",
+  "module": "index.js",
   "scripts": {
-    "test": "mocha -r esm **/*.test.js",
+    "test": "mocha **/*.test.js",
     "clean": "rimraf build",
     "lint": "eslint '**/*.js'",
     "build:dev": "npm run lint && npm run clean && webpack --config webpack.dev.js",
